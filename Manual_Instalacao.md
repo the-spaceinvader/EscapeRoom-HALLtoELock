@@ -10,8 +10,8 @@ O sistema tem duas instalações possíveis, escolhidas na webapp (secção 3). 
 
 | Instalação | Componentes |
 |---|---|
-| **Local** (de fábrica) | [AtomS3 Lite](https://docs.m5stack.com/en/core/AtomS3-Lite), [Atomic Port ABC Base](https://docs.m5stack.com/en/atom/Atomic_Port_ABC_Base), 4 × [HALL Unit](https://docs.m5stack.com/en/unit/Unit_Hall), [Relay Unit](https://docs.m5stack.com/en/unit/Unit_Relay), [Unit Hub](https://docs.m5stack.com/en/unit/Unit_Hub) |
-| **Remota** | Os mesmos componentes do Mestre, **menos a Relay Unit**, mais um segundo AtomS3 Lite (o **Remoto**) com a Relay Unit |
+| **Local** (de fábrica) | [AtomS3 Lite](https://docs.m5stack.com/en/core/AtomS3-Lite), [Atomic Port ABC Base](https://docs.m5stack.com/en/atom/Atomic_Port_ABC_Base), 4 × [HALL Unit](https://docs.m5stack.com/en/unit/Unit_Hall), [Relay Unit](https://docs.m5stack.com/en/unit/Unit_Relay); [Unit Hub](https://docs.m5stack.com/en/unit/Unit_Hub) **só com 4 sensores** |
+| **Remota** | O Mestre com os sensores (1 a 4 × HALL Unit), **sem Relay Unit e sem Hub**, mais um segundo AtomS3 Lite (o **Remoto**) com a Relay Unit |
 
 Também precisa de:
 - cabos Grove HY2.0-4P (um por unidade);
@@ -25,7 +25,7 @@ Os cabos Grove têm quatro fios: preto (GND), vermelho (5 V), amarelo e branco.
 
 ### 2.1 Sensores HALL
 
-Encaixe o AtomS3 Lite na Port ABC Base. Os sensores 1 a 3 ligam às portas da base e o sensor 4 liga à porta Grove do próprio AtomS3 Lite, pelo Hub:
+Encaixe o AtomS3 Lite na Port ABC Base. Os sensores 1 a 3 ligam às portas da base e o sensor 4 liga à porta Grove do próprio AtomS3 Lite (direto, ou pelo Hub no modo local, ver a secção 2.2):
 
 | Sensor | Ligação | GPIO |
 |---|---|---|
@@ -49,14 +49,36 @@ Um sensor ligado a uma porta de número acima de N é ignorado.
 
 | Instalação | Onde liga a Relay Unit | GPIO |
 |---|---|---|
-| Local | Grove do AtomS3 Lite do Mestre (pelo Hub), fio **amarelo** (DIN) | 2 |
+| Local | Grove do AtomS3 Lite do Mestre (direto com 1 a 3 sensores, pelo Hub com 4), fio **amarelo** (DIN) | 2 |
 | Remota | Grove do AtomS3 Lite do **Remoto**, fio **amarelo** (DIN) | 2 |
 
 A fechadura liga à Relay Unit pelos contactos **NO** e **COM**. O relé é ativado com nível HIGH e está em repouso com LOW. A lógica do relé não é configurável.
 
-O **Hub** só é necessário na instalação local, onde o sensor 4 e o relé partilham o Grove do Mestre. Na instalação remota o relé está no Remoto e o GPIO 2 do Mestre fica livre, por isso o sensor 4 pode ligar direto ao Grove do Mestre.
+**Quando é preciso o Hub** (o sensor 4 usa o GPIO 1 e o relé o GPIO 2, ambos no Grove do Mestre):
 
-### 2.3 Remoto
+| Instalação | Sensores | Hub |
+|---|---|---|
+| Local | 1 a 3 | **Não é necessário.** O relé liga direto ao Grove do Mestre (GPIO 2). |
+| Local | 4 | **Necessário.** O sensor 4 e o relé precisam do Grove ao mesmo tempo. |
+| Remota | 1 a 4 | **Não é necessário.** O relé está no Remoto e o Grove do Mestre fica livre para o sensor 4. |
+
+### 2.3 Diagramas de ligação
+
+Diagramas esquemáticos feitos para este projeto. Os GPIO são os do firmware. Nos cabos Grove, o preto é GND, o vermelho 5 V, o amarelo o GPIO 2 (relé) e o branco o GPIO 1 (sensor 4).
+
+**Figura 1 — Local, 1 a 3 sensores (sem Hub):**
+
+![Ligações em modo local com 1 a 3 sensores, sem Hub](imagens/ligacoes-local-1a3.svg)
+
+**Figura 2 — Local, 4 sensores (com Hub):**
+
+![Ligações em modo local com 4 sensores, com Hub](imagens/ligacoes-local-4-hub.svg)
+
+**Figura 3 — Remoto (Mestre com os sensores, Remoto com o relé):**
+
+![Ligações em modo remoto](imagens/ligacoes-remoto.svg)
+
+### 2.4 Remoto
 
 O Remoto é um AtomS3 Lite só com a Relay Unit na porta Grove. Não tem Port ABC nem sensores. O botão do Remoto não tem função.
 

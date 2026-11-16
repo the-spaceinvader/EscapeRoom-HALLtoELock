@@ -20,8 +20,8 @@ O relé pode estar:
 
 | Instalação | Componentes |
 |---|---|
-| Local | [AtomS3 Lite](https://docs.m5stack.com/en/core/AtomS3-Lite), [Atomic Port ABC Base](https://docs.m5stack.com/en/atom/Atomic_Port_ABC_Base), 4 × [HALL Unit](https://docs.m5stack.com/en/unit/Unit_Hall), [Relay Unit](https://docs.m5stack.com/en/unit/Unit_Relay), [Unit Hub](https://docs.m5stack.com/en/unit/Unit_Hub) |
-| Remota | O Mestre sem a Relay Unit, mais um segundo AtomS3 Lite com a Relay Unit |
+| Local | [AtomS3 Lite](https://docs.m5stack.com/en/core/AtomS3-Lite), [Atomic Port ABC Base](https://docs.m5stack.com/en/atom/Atomic_Port_ABC_Base), 4 × [HALL Unit](https://docs.m5stack.com/en/unit/Unit_Hall), [Relay Unit](https://docs.m5stack.com/en/unit/Unit_Relay); [Unit Hub](https://docs.m5stack.com/en/unit/Unit_Hub): só com 4 sensores em modo local |
+| Remota | O Mestre sem a Relay Unit e sem Hub, mais um segundo AtomS3 Lite com a Relay Unit |
 
 Sensores nas portas A, B e C da Port ABC (GPIO 39, 8 e 6) e na Grove (GPIO 1). Relé (DIN) na Grove, no GPIO 2.
 

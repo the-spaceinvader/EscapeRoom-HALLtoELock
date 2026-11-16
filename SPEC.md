@@ -14,7 +14,7 @@ Instalação local (de fábrica): tudo ligado ao mesmo AtomS3 Lite, sem Remoto n
 | Atomic Port ABC Base | Portas A, B e C para os sensores 1 a 3 |
 | 4 × HALL Unit | Sensores |
 | 1 × Relay Unit | Aciona a fechadura |
-| Unit Hub | Liga ao Grove do AtomS3 Lite, partilhado pelo sensor 4 e pelo relé |
+| Unit Hub | Só com 4 sensores em modo local: liga ao Grove do AtomS3 Lite, partilhado pelo sensor 4 e pelo relé. Em local com 1 a 3 sensores o relé liga direto ao Grove; em remoto não há Hub |
 
 ### Ligações
 
@@ -23,8 +23,8 @@ Instalação local (de fábrica): tudo ligado ao mesmo AtomS3 Lite, sem Remoto n
 | Sensor 1 | Porta A da Port ABC | 39 |
 | Sensor 2 | Porta B da Port ABC | 8 |
 | Sensor 3 | Porta C da Port ABC | 6 |
-| Sensor 4 | Grove do AtomS3 Lite (via Hub), fio branco | 1 |
-| Relé (DIN) | Grove do AtomS3 Lite (via Hub), fio amarelo | 2 |
+| Sensor 4 | Grove do AtomS3 Lite (pelo Hub em modo local; direto em modo remoto), fio branco | 1 |
+| Relé (DIN) | Grove do AtomS3 Lite (direto com 1 a 3 sensores, pelo Hub com 4; em modo remoto, no Grove do Remoto), fio amarelo | 2 |
 
 ## Funcionamento
 - Sensor **ativo** = íman detetado (pino LOW). A inversão é uma só, para todos os sensores em uso.
