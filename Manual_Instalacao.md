@@ -34,7 +34,16 @@ Encaixe o AtomS3 Lite na Port ABC Base. Os sensores 1 a 3 ligam às portas da ba
 | 3 | Porta **C** da Port ABC | 6 |
 | 4 | Grove do AtomS3 Lite, fio **branco** | 1 |
 
-Com N sensores em uso, o jogo lê os sensores 1 a N. Ligue por ordem, sem saltar números.
+Com N sensores em uso, o jogo lê os sensores 1 a N. Ligue por ordem, sem saltar números:
+
+| Quantos sensores | Ligue às portas | Número de sensores em uso (Ajustes) |
+|---|---|---|
+| 1 | A | 1 |
+| 2 | A e B | 2 |
+| 3 | A, B e C | 3 |
+| 4 | A, B, C e Grove | 4 |
+
+Um sensor ligado a uma porta de número acima de N é ignorado.
 
 ### 2.2 Relé
 

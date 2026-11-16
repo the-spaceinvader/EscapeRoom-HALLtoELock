@@ -12,6 +12,30 @@ Não é preciso carregar em nada durante o jogo.
 
 ## 2. Como funciona
 
+### 2.1 Numeração dos sensores
+
+Cada sensor tem um número fixo, que depende da porta onde está ligado:
+
+| Sensor | Onde liga | Nome na webapp |
+|---|---|---|
+| 1 | Porta **A** da Port ABC | Sensor 1 |
+| 2 | Porta **B** da Port ABC | Sensor 2 |
+| 3 | Porta **C** da Port ABC | Sensor 3 |
+| 4 | Porta Grove do AtomS3 Lite (fio branco) | Sensor 4 |
+
+Com **N sensores em uso** (Ajustes), o sistema lê sempre os sensores **de 1 a N**. Por isso, ligue os sensores pela ordem das portas:
+
+| Quero usar | Ligue às portas | Número de sensores em uso |
+|---|---|---|
+| 1 sensor | A | 1 |
+| 2 sensores | A e B | 2 |
+| 3 sensores | A, B e C | 3 |
+| 4 sensores | A, B, C e Grove | 4 |
+
+Um sensor ligado a uma porta de número acima de N é **ignorado**: não entra na combinação e não aparece na Calibração nem no Debugging. Não se pode usar, por exemplo, só as portas B e C: a combinação conta sempre a partir da porta A.
+
+### 2.2 Estados do jogo
+
 O jogo começa com as peças (e os ímanes) sobre os sensores. Com N sensores em uso, sem inversão:
 
 - **Abertura:** todos os sensores de 1 a N **sem íman** ao mesmo tempo (peças retiradas).
@@ -95,7 +119,7 @@ O nome do dispositivo aparece no cabeçalho. O indicador mostra "ligado" quando 
 
 | Definição | Valor de fábrica | Limites | O que faz |
 |---|---|---|---|
-| Número de sensores em uso | 4 | 1 a 4 | Quantos sensores entram na combinação (do 1 ao N) |
+| Número de sensores em uso | 4 | 1 a 4 | Quantos sensores entram na combinação, do 1 ao N, pela ordem das portas (secção 2.1) |
 | Inverter a lógica dos sensores | desligado | — | Troca as combinações de abertura e de rearme. A inversão vale para todos os sensores em uso |
 | Tempo de estabilidade | 3 s | 0,5 a 60 s | Tempo que a combinação tem de se manter para abrir ou rearmar |
 
@@ -115,7 +139,7 @@ O seletor **Relé** escolhe entre **Local (Relay Unit no Mestre)** e **Remoto (E
 
 ![Separador Calibração](imagens/webapp-calibracao.png)
 
-Mostra, em direto, um cartão por cada sensor em uso, com **ON** (íman detetado) ou **OFF** (sem íman). Serve para confirmar que cada sensor lê bem, antes de jogar.
+Mostra, em direto, um cartão por cada sensor em uso (Sensor 1 é a porta A, Sensor 2 a B, Sensor 3 a C e Sensor 4 a Grove), com **ON** (íman detetado) ou **OFF** (sem íman). Serve para confirmar que cada sensor lê bem, antes de jogar.
 
 **Atenção:** o jogo continua ativo durante a calibração. Se a combinação de abertura se mantiver, o relé ativa.
 
@@ -167,7 +191,7 @@ Em caso de dúvida, um reinício do Mestre (desligar e voltar a ligar) repõe o 
 |---|---|---|
 | O relé não ativa | Combinação incompleta, inversão ligada, N diferente do esperado, ou a contagem foi cancelada | Veja Calibração e Debugging: sensores, combinação em contagem e tempo |
 | O relé não desativa | O jogo está em "A aguardar rearme" | Reponha todas as peças (ou retire todas, com inversão) e mantenha o tempo de estabilidade |
-| Um sensor não muda | Cabo na porta errada, ou íman fora de alcance | Veja o separador Calibração e o manual de instalação (secção 2.1) |
+| Um sensor não muda | Cabo na porta errada, ou íman fora de alcance | Veja o separador Calibração e a secção 2.1 deste manual |
 | Não consigo abrir a página | A rede está desligada, ligou-se à rede errada ou usou `https` | Confirme os pulsos brancos no LED (se não houver, faça o toque longo de 3 s), ligue-se à rede **RSwitchE-Lock-XXXX** e escreva **http://192.168.4.1** |
 | A página fica "sem ligação" | O telemóvel saiu da rede, ou a rede foi desligada | Volte a ligar a rede com o toque longo e reabra a página |
 | Não consigo mudar para remoto (ou para local) | O jogo não está Armado | Rearme o jogo e tente outra vez |
