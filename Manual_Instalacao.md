@@ -75,7 +75,7 @@ O firmware do Mestre está em `Webapp/` (`Webapp.ino`, `WebPage.h`, `RemoteLink.
 - **Placa:** M5AtomS3 (FQBN `esp32:esp32:m5stack_atoms3:CDCOnBoot=cdc`).
 - **USB CDC On Boot:** *Enabled*. O firmware final não escreve nada na porta série, mas esta opção é a que se usa com esta placa.
 
-O core `m5stack:esp32` (FQBN `m5stack:esp32:m5stack_atoms3:CDCOnBoot=cdc`, versão 3.3.9) foi o usado nos ensaios em hardware, descritos nos relatórios. O manual documenta o core oficial `esp32:esp32`, com o qual os dois sketches compilam.
+O core `m5stack:esp32` (FQBN `m5stack:esp32:m5stack_atoms3:CDCOnBoot=cdc`, versão 3.3.9) é o indicado no relatório da Fase 3 (`RELATORIO_FASE3_VALIDACAO.md`). Os relatórios do relé remoto (R1 a R3) não indicam o FQBN. O manual documenta o core oficial `esp32:esp32`, com o qual os dois sketches compilam.
 
 ### 4.2 Bibliotecas
 
@@ -173,7 +173,7 @@ arduino-cli board list
 ~/Library/Arduino15/packages/esp32/tools/esptool_py/5.3.1/esptool --port <porta> read-mac
 ```
 
-   (o caminho do `esptool` depende da versão do core instalada). A linha `MAC:` é o MAC STA. Comando testado nas duas placas originais, onde devolveu `e8:f6:0a:98:5b:4c` (Mestre) e `44:1b:f6:f6:6e:f0` (Remoto), iguais às constantes do `Protocol.h`. O `esptool` reinicia a placa no fim; não carrega firmware. O nome do AP `RSwitchE-Lock-XXXX` pode servir de conferência: os 4 dígitos são os dois últimos bytes do MAC SoftAP, que é o STA com o último byte mais 1.
+   (o caminho do `esptool` depende da versão do core instalada). A linha `MAC:` é o MAC STA. Comando testado nas duas placas originais, onde devolveu `e8:f6:0a:98:5b:4c` (Mestre) e `44:1b:f6:f6:6e:f0` (Remoto), iguais às constantes do `Protocol.h`. O `esptool` reinicia a placa no fim; não carrega firmware. O nome do AP `RSwitchE-Lock-XXXX` vem do MAC SoftAP, não do STA. Não use o nome para deduzir o MAC STA: só o `esptool` o dá com certeza.
 2. Atualize `MASTER_MAC` ou `REMOTE_MAC` (conforme a placa substituída) nas **duas** cópias de `Protocol.h` e confirme com `diff`.
 3. Compile e carregue o Mestre **e** o Remoto, mesmo que só um deles tenha sido trocado.
 4. Se a placa trocada for o Mestre, configure-o de novo: arranca em instalação **local** e com os valores de fábrica. Abra a webapp, escolha **Remoto (ESP-NOW)** em Ajustes › Instalação e reponha os parâmetros do jogo.
