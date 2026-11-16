@@ -1,0 +1,11 @@
+# Local tooling and working notes
+.claude/
+CLAUDE.md
+CLAUDE_V2_futura.md
+SPEC_V2_futura.md
+.DS_Store
+
+# Intermediate sketches and archive (kept locally only; the final firmware is in Webapp/ and Remote/)
+Master/
+Game/
+Arquivo/
